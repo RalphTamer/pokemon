@@ -1,4 +1,4 @@
-import { fetchPoke, pokeDetails } from "@/Services/indexPage.service";
+import { fetchPoke, pokeDetails } from "@/services/indexPage.service";
 import HomePage from "@/components/HomePage";
 import {
   HydrationBoundary,
