@@ -2,12 +2,14 @@
 
 import { PokeList, pokeDetails } from "@/services/indexPage.service"
 import { useQuery } from "@tanstack/react-query"
-import PokeCard from "./UI/PokeCard"
+import RenderPokeCardsGrid from "./RenderPokeCardsGrid"
+import { useGlobalStore } from "@/lib/store"
 
 type Props = {
   pokeList: PokeList
 }
 const HomePage = (props: Props) => {
+  const searchData = useGlobalStore((state) => state.searchResult)
   const { data, error } = useQuery({
     queryKey: ["pokeDetails"],
     queryFn: () => pokeDetails(props.pokeList)
@@ -19,19 +21,10 @@ const HomePage = (props: Props) => {
   }
 
   return (
-    <section className="container lg:px-[200px] px-[50px]">
-      <div className="grid grid-cols-12 md:gap-12 gap-4">
-        {data.map((pokemon) => {
-          return (
-            <div
-              key={pokemon.id}
-              className="md:col-span-4 lg:col-span-3 col-span-6 mx-auto"
-            >
-              <PokeCard pokemon={pokemon} />
-            </div>
-          )
-        })}
-      </div>
+    <section className="container px-[200px] ">
+      <RenderPokeCardsGrid
+        PokemonDetails={searchData != null ? [searchData] : data}
+      />
     </section>
   )
 }

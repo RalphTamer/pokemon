@@ -1,29 +1,65 @@
 "use client"
 
+import { useDebounce } from "@/hooks/useDebounce"
+// import useDebounce from "@/hooks/useDebounce"
+import { useGlobalStore } from "@/lib/store"
+import { pokeDetailsSchema } from "@/services/indexPage.service"
 import { useQuery } from "@tanstack/react-query"
 import _ from "lodash"
+import { useRouter } from "next/navigation"
 
-import { useState } from "react"
+import { useEffect, useMemo, useState } from "react"
+
+const fetchPokemonSearchData = async (searchInput: string | null) => {
+  // guard
+  if (searchInput == null || searchInput.trim() === "") return null
+  try {
+    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${searchInput}`)
+    if (res.ok === false) {
+      throw new Error("Failed to fetch data")
+    }
+    const searchData = await res.json()
+    const parsedSearchData = pokeDetailsSchema.parse(searchData)
+    return parsedSearchData
+  } catch (error) {
+    throw new Error("Error fetching data")
+  }
+}
 
 const SearchBar = () => {
+  const router = useRouter()
   const [searchInput, setSearchInput] = useState<string | null>(null)
 
+  //   const debouncedSearchInput = useDebounce(searchInput, 300)
+
+  const queryKey = useMemo(() => ["search", searchInput], [searchInput])
+
   const { data, isLoading, error } = useQuery({
-    queryKey: ["search", searchInput],
-    queryFn: async () => {
-      // guard
-      if (searchInput == null || searchInput.trim() == "") return null
-      return fetch(`https://pokeapi.co/api/v2/pokemon/${searchInput}`).then(
-        (res) => res.json()
-      )
-    }
+    queryKey,
+    queryFn: () => fetchPokemonSearchData(searchInput)
   })
+  //   const datas = useMemo(() => data, [])
   console.log(data)
+
+  useEffect(() => {
+    if (data != null) {
+      useGlobalStore.setState({
+        searchResult: data
+      })
+    } else {
+      useGlobalStore.setState({
+        searchResult: null
+      })
+    }
+  }, [data])
 
   return (
     <form
+      id="searchForm"
+      name="searchForm"
       onSubmit={(e) => {
         e.preventDefault()
+        router.push(`/pokemon/${searchInput}`)
       }}
       className="py-4 flex justify-center items-center "
     >
@@ -48,7 +84,7 @@ const SearchBar = () => {
           className="bg-[#CC0000] py-1 px-4 text-white font-[500]"
           style={{ borderRadius: 18 }}
         >
-          search
+          {isLoading === true ? "loading" : "search"}
         </button>
       </div>
     </form>

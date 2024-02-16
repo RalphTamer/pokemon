@@ -1,8 +1,9 @@
+import { FetchedPokeDetails } from "@/services/indexPage.service"
 import { create } from "zustand"
 
 type Store = {
-  test: string | null
+  searchResult: FetchedPokeDetails | null
 }
 export const useGlobalStore = create<Store>((set) => ({
-  test: null
+  searchResult: null
 }))

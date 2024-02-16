@@ -3,6 +3,7 @@
 import _ from "lodash"
 import SearchBar from "../SearchBar"
 import ImageWrapper from "../UI/ImageWrapper"
+import Link from "next/link"
 
 const Header = () => {
   return (
@@ -16,9 +17,9 @@ const Header = () => {
       }}
     >
       <div className="flex items-center justify-between container px-[100px]">
-        <div className="w-[50px]">
+        <Link href="/" className="w-[50px]">
           <ImageWrapper alt="logo" src="/pokelogo.png" />
-        </div>
+        </Link>
         <SearchBar />
       </div>
     </nav>
