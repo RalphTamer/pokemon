@@ -3,7 +3,7 @@ const nextConfig = {
     images: {
         domains: ['raw.githubusercontent.com'],
       },
-      // reactStrictMode: false,
+      reactStrictMode: false,
 };
 
 export default nextConfig;

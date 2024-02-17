@@ -1,3 +1,5 @@
+import { styles } from "@/lib/styles"
+
 type Props = {
   text: string
   backgroundColor?: string
@@ -5,8 +7,8 @@ type Props = {
   style?: React.CSSProperties
 }
 const Badge = (props: Props) => {
-  const backgroundColor = props.backgroundColor || "#FFDE00"
-  const textColor = props.textColor || "#3B4CCA"
+  const backgroundColor = props.backgroundColor || styles.colors.yellow
+  const textColor = props.textColor || styles.colors.blue
 
   return (
     <div

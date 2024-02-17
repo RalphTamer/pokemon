@@ -4,16 +4,18 @@ import _ from "lodash"
 import SearchBar from "../SearchBar"
 import ImageWrapper from "../UI/ImageWrapper"
 import Link from "next/link"
+import { styles } from "@/lib/styles"
 
 const Header = () => {
   return (
     <nav
-      className="w-full bg-[#3B4CCA] fixed top-0 container"
+      className="w-full  fixed top-0 container"
       style={{
         borderBottomLeftRadius: 12,
         borderBottomRightRadius: 12,
         boxShadow: "5px 5px 8px #ccc",
-        zIndex: 99
+        zIndex: 99,
+        background: styles.colors.blue
       }}
     >
       <div className="flex gap-4 items-center justify-between">

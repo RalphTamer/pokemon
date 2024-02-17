@@ -56,10 +56,7 @@ export const pokeDetailsSchema = z.object({
 
 export type FetchedPokeDetails = z.infer<typeof pokeDetailsSchema>
 
-export type PokeList = Array<{
-  name: string
-  url: string
-}>
+export type PokeList = Pick<FetchedPokemon, "results">["results"]
 
 export const fetchPoke = async () => {
   const pokeList = await fetch(

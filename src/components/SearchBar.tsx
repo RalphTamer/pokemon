@@ -9,6 +9,7 @@ import { fetchPokemonSearchData } from "@/services/header.service"
 import ActivityIndicator from "./UI/ActivityIndicator"
 import { useGlobalStore } from "@/lib/store"
 import SVGIcon from "./UI/SVGIcon"
+import { styles } from "@/lib/styles"
 
 const SearchBar = () => {
   const router = useRouter()
@@ -74,9 +75,10 @@ const SearchBar = () => {
         </button>
       )}
       <div
-        className=" bg-[#FFDE00] px-2  flex items-center py-1"
+        className={` px-2  flex items-center py-1`}
         style={{
-          borderRadius: 18
+          borderRadius: 18,
+          background: styles.colors.yellow
         }}
       >
         <input
@@ -105,7 +107,7 @@ const SearchBar = () => {
                 transform: "translate(-50%,-50%)"
               }}
             >
-              <ActivityIndicator color="#FFDE00" />
+              <ActivityIndicator color={styles.colors.yellow} />
             </div>
           ) : (
             <div

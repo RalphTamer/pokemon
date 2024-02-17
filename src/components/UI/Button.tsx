@@ -1,3 +1,4 @@
+import { styles } from "@/lib/styles"
 import React, { ReactNode } from "react"
 
 type Props = {
@@ -14,8 +15,8 @@ const Button = (props: Props) => {
       className={`px-4 py-2  text-center font-bold ${props.className}`}
       style={{
         borderRadius: 22,
-        color: "#3B4CCA",
-        background: "#FFDE00",
+        color: styles.colors.blue,
+        background: styles.colors.yellow,
         ...props.style
       }}
     >
