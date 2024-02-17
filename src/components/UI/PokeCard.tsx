@@ -2,7 +2,7 @@ import { FetchedPokeDetails } from "@/services/indexPage.service"
 import { capitalizeFirstLetter } from "@/lib/utils"
 
 import Link from "next/link"
-import { useCallback } from "react"
+import React from "react"
 import ImageWrapper from "./ImageWrapper"
 
 type Props = {
@@ -12,7 +12,6 @@ const PokeCard = (props: Props) => {
   const { pokemon } = props
   const defaultSprite = pokemon.sprites.front_default
   const homeSprite = pokemon.sprites.other.home.front_default
-
   return (
     <Link href={`/pokemon/${pokemon.id}`} className="pokeall">
       <div
@@ -46,4 +45,4 @@ const PokeCard = (props: Props) => {
   )
 }
 
-export default PokeCard
+export default React.memo(PokeCard)

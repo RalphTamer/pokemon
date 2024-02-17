@@ -8,17 +8,21 @@ import Link from "next/link"
 const Header = () => {
   return (
     <nav
-      className="w-full bg-[#3B4CCA] fixed top-0"
+      className="w-full bg-[#3B4CCA] fixed top-0 container"
       style={{
         borderBottomLeftRadius: 12,
         borderBottomRightRadius: 12,
         boxShadow: "5px 5px 8px #ccc",
-        zIndex: 999999
+        zIndex: 99
       }}
     >
-      <div className="flex items-center justify-between container px-[100px]">
-        <Link href="/" className="w-[50px]">
-          <ImageWrapper alt="logo" src="/pokelogo.png" />
+      <div className="flex gap-4 items-center justify-between">
+        <Link href="/" className="">
+          <ImageWrapper
+            alt="logo"
+            src="/images/pokelogo.png"
+            styles={{ width: 50, height: 50 }}
+          />
         </Link>
         <SearchBar />
       </div>

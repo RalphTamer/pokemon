@@ -2,8 +2,12 @@
 import { fetchPokemonDetails } from "@/services/PokemonDetailsPage.service"
 import { useQuery } from "@tanstack/react-query"
 import ImageWrapper from "./UI/ImageWrapper"
+
 import { capitalizeFirstLetter } from "@/lib/utils"
 import Badge from "./UI/Badge"
+import { redirect } from "next/dist/server/api-utils"
+import { notFound } from "next/navigation"
+import { ApiError } from "@/lib/exceptions"
 
 type Props = {
   id: string
@@ -15,17 +19,18 @@ const PokemonDetailsPage = (props: Props) => {
     queryFn: () => fetchPokemonDetails(id)
   })
   if (data == null) {
-    return <></>
+    return notFound()
+  } else if (error != null) {
+    throw new ApiError(error.message)
   }
   const homeSprite = data.sprites.other.home.front_default
   const defaultSprite = data.sprites.front_default
 
-  console.log(data)
-
   return (
-    <section className="container px-[200px] my-12">
-      <div className="grid grid-cols-2 gap-4">
+    <section className="container">
+      <div className="flex gap-4 max-md:flex-col">
         <ImageWrapper
+          className="w-1/2 max-md:w-full"
           src={homeSprite != null ? homeSprite : defaultSprite}
           alt={data.name}
           styles={{
@@ -34,7 +39,7 @@ const PokemonDetailsPage = (props: Props) => {
             borderRadius: "18px"
           }}
         />
-        <div className="flex flex-col space-y-4">
+        <div className="flex flex-col space-y-4 w-1/2 max-md:w-full">
           <h1
             className="text-center"
             style={{
@@ -52,22 +57,20 @@ const PokemonDetailsPage = (props: Props) => {
             <h1 className="font-bold">Types :</h1>
             <div className="flex gap-2">
               {data.types.map(({ type }) => {
-                return <Badge key={type.name} text={type.name} style={{}} />
+                return <Badge key={type.name} text={type.name} />
               })}
             </div>
           </div>
           <div className="flex gap-2  items-center">
             <div className="font-bold">Abilities: </div>
-            <div className="flex gap-2">
+            <div className="flex gap-2 flex-wrap">
               {data.abilities.map(({ ability }) => {
                 return (
                   <Badge
                     key={ability.name}
                     text={ability.name}
-                    style={{
-                      background: "#3B4CCA",
-                      color: "#FFDE00"
-                    }}
+                    backgroundColor="#3B4CCA"
+                    textColor="#FFDE00"
                   />
                 )
               })}
