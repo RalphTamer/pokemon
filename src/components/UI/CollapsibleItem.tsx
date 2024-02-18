@@ -29,7 +29,7 @@ const CollapsibleItem: React.FC<CollapsibleItemProps> = ({
           alignItems: "center"
         }}
       >
-        <h3>{title}</h3>
+        <h1>{title}</h1>
         <span>
           {isCollapsed ? (
             <SVGIcon name="chevron-right" />

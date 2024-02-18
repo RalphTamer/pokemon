@@ -22,7 +22,6 @@ const Header = () => {
       <div className="flex gap-4 items-center justify-between">
         <Link
           href="/"
-          className=""
           onClick={() => {
             useGlobalStore.setState({
               searchResult: null
@@ -31,7 +30,7 @@ const Header = () => {
         >
           <ImageWrapper
             alt="logo"
-            src="/images/pokelogo.png"
+            src="/images/poke-logo.png"
             styles={{ width: 50, height: 50 }}
           />
         </Link>

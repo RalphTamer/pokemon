@@ -1,4 +1,4 @@
-import { fetchPokemonDetails } from "@/services/PokemonDetailsPage.service"
+import { fetchPokemonDetails } from "@/services/pokemonDetailsPage.service"
 import PokemonDetailsPage from "@/components/PokemonDetails/PokemonDetailsPage"
 import {
   HydrationBoundary,

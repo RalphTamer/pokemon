@@ -6,14 +6,15 @@ import {
   fetchPokeDetails,
   pokemonLimitPerPage
 } from "@/services/indexPage.service"
-import { useCallback, useState } from "react"
-import SVGIcon from "./UI/SVGIcon"
-import ActivityIndicator from "./UI/ActivityIndicator"
+import { MutableRefObject, useCallback, useRef, useState } from "react"
+import SVGIcon from "../UI/SVGIcon"
+import ActivityIndicator from "../UI/ActivityIndicator"
 import { styles } from "@/lib/styles"
 
 type Props = {
   pokeList: FetchedPokemonList
   getFetchedPokemons: (fetchedPokemons: FetchedPokeDetails[]) => void
+  pokemonsGridRef: MutableRefObject<HTMLDivElement | null>
 }
 const HomePagePagination = (props: Props) => {
   const [fetchedPokemonInfo, setFetchedPokemonInfo] = useState<{
@@ -44,12 +45,19 @@ const HomePagePagination = (props: Props) => {
       })
       props.getFetchedPokemons(nextPageData)
       setIsLoading(false)
+      if (props.pokemonsGridRef != null) {
+        props.pokemonsGridRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        })
+      }
     },
-    []
+    [props]
   )
   return (
-    <div className="flex gap-4 justify-center items-center my-4">
+    <div className="flex gap-4 justify-center items-center my-8">
       <button
+        aria-label="chevron left"
         disabled={
           isloading === true ||
           fetchedPokemonInfo.fetchedPokemonList.previous == null
@@ -101,7 +109,7 @@ const HomePagePagination = (props: Props) => {
             }}
           />
         ) : (
-          <h3
+          <h1
             className="absolute top-1/2 left-1/2"
             style={{
               transform: "translate(-50%,-50%)",
@@ -114,11 +122,12 @@ const HomePagePagination = (props: Props) => {
                 (pokemonLimitPerPage + fetchedPokemonInfo.pokemonPageOffset))) /
               pokemonLimitPerPage}
             /{Math.ceil(props.pokeList.count / pokemonLimitPerPage)}
-          </h3>
+          </h1>
         )}
       </div>
 
       <button
+        aria-label="chevron right"
         disabled={
           isloading === true ||
           fetchedPokemonInfo.fetchedPokemonList.next == null

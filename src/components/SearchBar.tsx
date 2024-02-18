@@ -46,7 +46,7 @@ const SearchBar = () => {
           errorMessage: `No Results found for ${value}`
         })
       }
-    }, 800)
+    }, 700)
   }, [])
 
   return (
@@ -62,6 +62,7 @@ const SearchBar = () => {
     >
       {searchInput != null && searchInput != "" && (
         <button
+          aria-label="close button"
           type="button"
           className="relative"
           onClick={() => {
@@ -83,6 +84,7 @@ const SearchBar = () => {
         }}
       >
         <input
+          name="search input"
           value={searchInput != null ? searchInput : ""}
           onChange={(e) => {
             setSearchInput(e.target.value)
@@ -94,6 +96,7 @@ const SearchBar = () => {
           placeholder="Search"
         />
         <button
+          aria-label="submit button"
           type="submit"
           className="bg-[#CC0000] px-8 py-4 text-white font-[500] relative"
           style={{ borderRadius: 18 }}

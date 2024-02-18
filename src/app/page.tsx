@@ -1,5 +1,10 @@
-import { fetchPoke, fetchPokeDetails } from "@/services/indexPage.service"
-import HomePage from "@/components/HomePage"
+import {
+  fetchPoke,
+  fetchPokeDetails,
+  fetchPokemonTypes,
+  listSchema
+} from "@/services/indexPage.service"
+import HomePage from "@/components/HomePage/HomePage"
 import {
   HydrationBoundary,
   QueryClient,
@@ -14,6 +19,10 @@ export default async function Home() {
   await queryClient.prefetchQuery({
     queryKey: ["pokeDetails"],
     queryFn: () => fetchPokeDetails(pokeList.results)
+  })
+  await queryClient.prefetchQuery({
+    queryKey: ["types"],
+    queryFn: () => fetchPokemonTypes()
   })
 
   return (

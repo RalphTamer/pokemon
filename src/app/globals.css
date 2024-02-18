@@ -33,16 +33,6 @@
   }
   
 }
-.pokecard {
-background: rgb(239 239 237);
-/* animation: onrender 1s ease 0s 1 normal forwards; */
-transition: all ease-in-out .2s ;
-opacity: 1;
-}
-
-.pokecard:hover {
-  transform: translateY(-5%) rotate(2deg);
-}
 
 h5{
   font-size: 10px;

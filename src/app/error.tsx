@@ -1,6 +1,6 @@
 "use client"
 
-import ErrorUI from "@/components/ErrorUI"
+import ErrorUI from "@/components/UI/ErrorUI"
 import Button from "@/components/UI/Button"
 
 type Props = {
@@ -15,7 +15,9 @@ const ErrorPage = (props: Props) => {
         subtitle={props.error.message + " Maybe try again?"}
       >
         <div className="flex justify-center">
-          <Button onClick={props.reset}>Try Again</Button>
+          <Button name="try again" onClick={props.reset}>
+            Try Again
+          </Button>
         </div>
       </ErrorUI>
     </>

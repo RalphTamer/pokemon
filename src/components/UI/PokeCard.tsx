@@ -13,12 +13,15 @@ const PokeCard = (props: Props) => {
   const defaultSprite = pokemon.sprites.front_default
   const homeSprite = pokemon.sprites.other.home.front_default
   return (
-    <Link href={`/pokemon/${pokemon.id}`} className="pokeall">
+    <Link href={`/pokemon/${pokemon.id}`}>
       <div
-        className="pokecard p-1"
+        className="hover:translate-y-[-5%] hover:rotate-2 p-1"
         style={{
           borderRadius: "12px",
-          boxShadow: "2px 2px 8px #ccc"
+          boxShadow: "2px 2px 8px #ccc",
+          background: "rgb(239 239 237)",
+          transition: "all ease-in-out .2s ",
+          opacity: 1
         }}
       >
         <ImageWrapper
@@ -31,7 +34,7 @@ const PokeCard = (props: Props) => {
         />
 
         <div className="px-3">
-          <h4>Base exp : {pokemon.base_experience}</h4>
+          <p>Base exp : {pokemon.base_experience}</p>
           <h1
             style={{
               fontWeight: "500"
@@ -40,8 +43,8 @@ const PokeCard = (props: Props) => {
             {capitalizeFirstLetter(pokemon.name)}
           </h1>
           <div className="flex justify-between">
-            <h3>weight : {pokemon.weight}</h3>
-            <h3>height : {pokemon.height}</h3>
+            <p>weight : {pokemon.weight}</p>
+            <p>height : {pokemon.height}</p>
           </div>
         </div>
       </div>

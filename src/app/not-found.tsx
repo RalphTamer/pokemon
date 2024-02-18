@@ -1,5 +1,5 @@
 "use client"
-import ErrorUI from "@/components/ErrorUI"
+import ErrorUI from "@/components/UI/ErrorUI"
 import ImageWrapper from "@/components/UI/ImageWrapper"
 import Link from "next/link"
 

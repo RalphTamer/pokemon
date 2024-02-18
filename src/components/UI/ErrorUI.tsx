@@ -1,6 +1,6 @@
 import Link from "next/link"
-import ImageWrapper from "./UI/ImageWrapper"
-import Button from "./UI/Button"
+import ImageWrapper from "./ImageWrapper"
+import Button from "./Button"
 import { ReactNode } from "react"
 
 type Props = {
@@ -22,9 +22,9 @@ const ErrorUI = (props: Props) => {
       />
       <div className="space-y-4">
         <h1 className="w-full text-[28px] text-center">{title}</h1>
-        <h3 className="w-full  text-center">{subtitle}</h3>
+        <p className="w-full  text-center">{subtitle}</p>
         <div className="flex justify-center">
-          <Button>
+          <Button name="go to home page">
             <Link href={"/"}>Go to homepage</Link>
           </Button>
         </div>

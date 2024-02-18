@@ -1,5 +1,5 @@
 "use client"
-import { fetchPokemonDetails } from "@/services/PokemonDetailsPage.service"
+import { fetchPokemonDetails } from "@/services/pokemonDetailsPage.service"
 import { useQuery } from "@tanstack/react-query"
 import ImageWrapper from "../UI/ImageWrapper"
 

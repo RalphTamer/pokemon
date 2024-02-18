@@ -1,5 +1,5 @@
 import { ApiError } from "@/lib/exceptions"
-import { pokeTypesInfo } from "@/services/PokemonDetailsPage.service"
+import { pokeTypesInfo } from "@/services/pokemonDetailsPage.service"
 import { useQuery } from "@tanstack/react-query"
 import Skeleton from "react-loading-skeleton"
 import CollapsibleItem from "../UI/CollapsibleItem"
@@ -16,7 +16,7 @@ const PokemonTypes = (props: Props) => {
     isLoading,
     error
   } = useQuery({
-    queryKey: ["types"],
+    queryKey: ["detailsPagetypes"],
     queryFn: () => pokeTypesInfo(typesUrls)
   })
   // console.log(data)
@@ -26,13 +26,11 @@ const PokemonTypes = (props: Props) => {
   }
 
   if (isLoading) {
-    return <Skeleton count={10} />
+    return <Skeleton count={4} />
   }
   if (pokemonTypesData == null) {
     return <h1>No additional details found</h1>
   }
-
-  console.log(pokemonTypesData)
 
   return (
     <div>
@@ -45,6 +43,8 @@ const PokemonTypes = (props: Props) => {
             <div>
               {Object.entries(type.damage_relations).map(([key, value]) => {
                 const typedKey = key as keyof typeof type.damage_relations
+                // guard
+                if (value[0] == null) return
                 return (
                   <div key={typedKey}>
                     <span
@@ -56,7 +56,13 @@ const PokemonTypes = (props: Props) => {
                       {humanize(typedKey)}:{" "}
                     </span>
                     <span>
-                      {value.map((v) => capitalizeFirstLetter(v.name + " "))}
+                      {value.map((v, idx) => {
+                        const name =
+                          idx + 1 === value.length
+                            ? capitalizeFirstLetter(v.name)
+                            : capitalizeFirstLetter(v.name) + ", "
+                        return name
+                      })}
                     </span>
                   </div>
                 )

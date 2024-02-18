@@ -18,13 +18,13 @@ const ImageWrapper = (props: Props) => {
       }}
     >
       <Image
-        priority={false}
+        priority={true}
         src={props.src}
         alt={props.alt}
         style={{ objectFit: "cover" }}
         sizes="100vw , 100vh"
+        loading="eager"
         fill
-        loading="lazy"
       />
     </div>
   )

@@ -2,7 +2,7 @@
 import { useQuery } from "@tanstack/react-query"
 import Skeleton from "react-loading-skeleton"
 
-import { pokeAbilitiesInfo } from "@/services/PokemonDetailsPage.service"
+import { pokeAbilitiesInfo } from "@/services/pokemonDetailsPage.service"
 import { ApiError } from "@/lib/exceptions"
 import CollapsibleItem from "../UI/CollapsibleItem"
 import { capitalizeFirstLetter } from "@/lib/utils"
@@ -22,7 +22,7 @@ const PokemonAbilities = (props: Props) => {
     throw new ApiError(error.message)
   }
   if (isLoading) {
-    return <Skeleton count={10} />
+    return <Skeleton count={4} />
   }
   if (data == null) {
     return <h1>No additional details found</h1>

@@ -20,18 +20,19 @@ export const pokemonTypesSchema = z.object({
   id: z.number(),
   name: z.string(),
   damage_relations: z.object({
-    double_damage_from: z.array(
+    no_damage_from: z.array(
       z.object({
         name: z.string(),
         url: z.string()
       })
     ),
-    double_damage_to: z.array(
+    no_damage_to: z.array(
       z.object({
         name: z.string(),
         url: z.string()
       })
     ),
+
     half_damage_from: z.array(
       z.object({
         name: z.string(),
@@ -39,6 +40,18 @@ export const pokemonTypesSchema = z.object({
       })
     ),
     half_damage_to: z.array(
+      z.object({
+        name: z.string(),
+        url: z.string()
+      })
+    ),
+    double_damage_from: z.array(
+      z.object({
+        name: z.string(),
+        url: z.string()
+      })
+    ),
+    double_damage_to: z.array(
       z.object({
         name: z.string(),
         url: z.string()

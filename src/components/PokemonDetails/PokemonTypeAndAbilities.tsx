@@ -16,7 +16,7 @@ const PokemonTypeAndAbilities = (props: Props) => {
 
   const typesUrls = useMemo(
     () => props.types.map(({ type }) => type.url),
-    [props.abilities]
+    [props.types]
   )
 
   // console.log("render")
