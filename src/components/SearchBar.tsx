@@ -55,6 +55,7 @@ const SearchBar = () => {
       name="searchForm"
       onSubmit={(e) => {
         e.preventDefault()
+        setSearchInput(null)
         router.push(`/pokemon/${searchInput}`)
       }}
       className="py-4 flex justify-center items-center "
@@ -88,9 +89,9 @@ const SearchBar = () => {
             debouncedHandleChange(e.target.value)
           }}
           type="text"
-          className="placeholder:text-[#1c1d1d] placeholder:font-[500]"
-          style={{ background: "transparent", outline: "none" }}
-          placeholder="Search a pokemon"
+          className="placeholder:text-[#1c1d1d] placeholder:font-[500] max-md:placeholder:text-[14px]"
+          style={{ background: "transparent", outline: "none", width: "100%" }}
+          placeholder="Search"
         />
         <button
           type="submit"

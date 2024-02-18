@@ -5,6 +5,7 @@ import SearchBar from "../SearchBar"
 import ImageWrapper from "../UI/ImageWrapper"
 import Link from "next/link"
 import { styles } from "@/lib/styles"
+import { useGlobalStore } from "@/lib/store"
 
 const Header = () => {
   return (
@@ -19,7 +20,15 @@ const Header = () => {
       }}
     >
       <div className="flex gap-4 items-center justify-between">
-        <Link href="/" className="">
+        <Link
+          href="/"
+          className=""
+          onClick={() => {
+            useGlobalStore.setState({
+              searchResult: null
+            })
+          }}
+        >
           <ImageWrapper
             alt="logo"
             src="/images/pokelogo.png"

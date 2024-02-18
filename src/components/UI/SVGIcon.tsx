@@ -6,7 +6,7 @@ type Props = {
   fill?: string
   strokeWidth?: number
   style?: CSSProperties
-  name: "search" | "x" | "chevron-right" | "chevron-down"
+  name: "search" | "x" | "chevron-right" | "chevron-down" | "chevron-left"
 }
 
 const SVGIcon = (props: Props) => {
@@ -45,6 +45,13 @@ const SVGIcon = (props: Props) => {
       <Fragment>
         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
         <path d="M6 9l6 6l6 -6" />
+      </Fragment>
+    )
+  } else if (props.name === "chevron-left") {
+    svgInnerElem = (
+      <Fragment>
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M15 6l-6 6l6 6" />
       </Fragment>
     )
   } else {

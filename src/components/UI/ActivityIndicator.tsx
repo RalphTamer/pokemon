@@ -3,6 +3,8 @@ import React from "react"
 type Props = {
   size?: number
   color?: string
+  className?: string
+  style?: React.CSSProperties
   //   strokeWidth?: number
 }
 
@@ -12,12 +14,14 @@ const ActivityIndicator = (props: Props) => {
   //   const strokeWidth = props.strokeWidth || 1.5
   return (
     <div
+      className={`${props.className}`}
       style={{
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
         width: size,
-        height: size
+        height: size,
+        ...props.style
       }}
     >
       <svg

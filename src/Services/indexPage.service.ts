@@ -11,12 +11,12 @@ export const pokemonsSchema = z.object({
     })
   )
 })
-export type FetchedPokemon = z.infer<typeof pokemonsSchema>
+export type FetchedPokemonList = z.infer<typeof pokemonsSchema>
 
 export const pokeDetailsSchema = z.object({
   name: z.string(),
   id: z.number(),
-  base_experience: z.number(),
+  base_experience: z.nullable(z.number()),
   weight: z.number(),
   height: z.number(),
   abilities: z.array(
@@ -38,7 +38,7 @@ export const pokeDetailsSchema = z.object({
     })
   ),
   sprites: z.object({
-    front_default: z.string(),
+    front_default: z.nullable(z.string()),
     back_default: z.nullable(z.string()),
     back_female: z.nullable(z.string()),
     back_shiny: z.nullable(z.string()),
@@ -56,17 +56,19 @@ export const pokeDetailsSchema = z.object({
 
 export type FetchedPokeDetails = z.infer<typeof pokeDetailsSchema>
 
-export type PokeList = Pick<FetchedPokemon, "results">["results"]
+export type PokeList = Pick<FetchedPokemonList, "results">["results"]
 
-export const fetchPoke = async () => {
-  const pokeList = await fetch(
-    "https://pokeapi.co/api/v2/pokemon?limit=20&offset=0"
-  ).then((res) => res.json())
+export const pokemonLimitPerPage = 20
+export const fetchPoke = async (PokeListurl?: string) => {
+  const url =
+    PokeListurl ||
+    `https://pokeapi.co/api/v2/pokemon?limit=${pokemonLimitPerPage}&offset=0`
+  const pokeList = await fetch(url).then((res) => res.json())
   const parsedPokeList = pokemonsSchema.parse(pokeList)
   return parsedPokeList
 }
 
-export const pokeDetails = async (pokeList: PokeList) => {
+export const fetchPokeDetails = async (pokeList: PokeList) => {
   const pokeDetailsFn = Promise.all(
     pokeList.map(async (pokeDetail) => {
       const res = await fetch(pokeDetail.url)

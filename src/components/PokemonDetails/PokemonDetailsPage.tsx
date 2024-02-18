@@ -7,8 +7,7 @@ import { capitalizeFirstLetter } from "@/lib/utils"
 import Badge from "../UI/Badge"
 import { notFound } from "next/navigation"
 import { ApiError } from "@/lib/exceptions"
-import Skeleton from "react-loading-skeleton"
-import MorePokemonDetails from "./MorePokemonDetails"
+import PokemonTypeAndAbilities from "./PokemonTypeAndAbilities"
 import { styles } from "@/lib/styles"
 
 type Props = {
@@ -16,17 +15,21 @@ type Props = {
 }
 const PokemonDetailsPage = (props: Props) => {
   const { id } = props
-  const { data: pokemon, error } = useQuery({
+  const {
+    data: pokemon,
+    error,
+    isLoading
+  } = useQuery({
     queryKey: ["pokemonDetailsPage"],
     queryFn: () => fetchPokemonDetails(id)
   })
+
   if (pokemon == null) {
     return notFound()
   }
   if (error != null) {
     throw new ApiError(error.message)
   }
-  // TODO ADD MORE DETAILS!!!
 
   const homeSprite = pokemon.sprites.other.home.front_default
   const defaultSprite = pokemon.sprites.front_default
@@ -36,7 +39,11 @@ const PokemonDetailsPage = (props: Props) => {
       <div className="grid grid-cols-2 gap-4 max-md:flex-col">
         <ImageWrapper
           className="col-span-1 max-md:col-span-2"
-          src={homeSprite != null ? homeSprite : defaultSprite}
+          src={
+            homeSprite != null
+              ? homeSprite
+              : defaultSprite || "/images/pokeLogo.png"
+          }
           alt={pokemon.name}
           styles={{
             background: "#cccccc80",
@@ -82,7 +89,7 @@ const PokemonDetailsPage = (props: Props) => {
             </div>
           </div>
 
-          <MorePokemonDetails
+          <PokemonTypeAndAbilities
             abilities={pokemon.abilities}
             types={pokemon.types}
           />

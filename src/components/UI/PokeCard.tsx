@@ -22,7 +22,11 @@ const PokeCard = (props: Props) => {
         }}
       >
         <ImageWrapper
-          src={homeSprite != null ? homeSprite : defaultSprite}
+          src={
+            homeSprite != null
+              ? homeSprite
+              : defaultSprite || "/images/pokeLogo.png"
+          }
           alt={pokemon.name}
         />
 

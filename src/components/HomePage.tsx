@@ -1,13 +1,22 @@
 "use client"
 
-import { PokeList, pokeDetails } from "@/services/indexPage.service"
+import {
+  FetchedPokeDetails,
+  FetchedPokemonList,
+  PokeList,
+  fetchPoke,
+  fetchPokeDetails,
+  pokemonLimitPerPage
+} from "@/services/indexPage.service"
 import { useQuery } from "@tanstack/react-query"
 import RenderPokeCardsGrid from "./RenderPokeCardsGrid"
 import { useGlobalStore } from "@/lib/store"
 import { ApiError } from "@/lib/exceptions"
+import { useState } from "react"
+import HomePagePagination from "./HomePagePagination"
 
 type Props = {
-  pokeList: PokeList
+  pokeList: FetchedPokemonList
 }
 const HomePage = (props: Props) => {
   // since it's only 1 result
@@ -18,7 +27,7 @@ const HomePage = (props: Props) => {
 
   const { data, error } = useQuery({
     queryKey: ["pokeDetails"],
-    queryFn: () => pokeDetails(props.pokeList)
+    queryFn: () => fetchPokeDetails(props.pokeList.results)
   })
 
   if (error != null) {
@@ -28,8 +37,20 @@ const HomePage = (props: Props) => {
     throw new ApiError("Something is wrong from our side")
   }
 
+  const [fetchedPokemons, setFetchedPokemons] =
+    useState<FetchedPokeDetails[]>(data)
+
+  console.log("render")
+  // console.log(pokemonPageOffset)
+
   return (
     <section className="container">
+      <HomePagePagination
+        pokeList={props.pokeList}
+        getFetchedPokemons={(fetchedPokemons) => {
+          setFetchedPokemons(fetchedPokemons)
+        }}
+      />
       {searchData != null && (
         <h1 className="my-4 text-center text-[24px] font-[500]">
           {" "}
@@ -37,7 +58,7 @@ const HomePage = (props: Props) => {
         </h1>
       )}
       <RenderPokeCardsGrid
-        PokemonDetails={searchData != null ? [searchData] : data}
+        PokemonDetails={searchData != null ? [searchData] : fetchedPokemons}
       />
     </section>
   )
