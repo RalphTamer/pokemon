@@ -17,7 +17,6 @@ const PokemonAbilities = (props: Props) => {
     queryKey: ["abilities"],
     queryFn: () => pokeAbilitiesInfo(abilitiesUrls)
   })
-  // console.log(data)
   if (error != null) {
     throw new ApiError(error.message)
   }

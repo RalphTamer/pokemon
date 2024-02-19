@@ -20,8 +20,6 @@ const PokemonTypeAndAbilities = (props: Props) => {
     [props.types]
   )
 
-  // console.log("render")
-
   return (
     <div className="">
       <PokemonAbilities abilitiesUrls={abilitiesUrls} />

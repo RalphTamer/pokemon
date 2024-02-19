@@ -19,7 +19,6 @@ const PokemonTypes = (props: Props) => {
     queryKey: ["detailsPagetypes"],
     queryFn: () => pokeTypesInfo(typesUrls)
   })
-  // console.log(data)
 
   if (error != null) {
     throw new ApiError(error.message)

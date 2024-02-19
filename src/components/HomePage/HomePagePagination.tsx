@@ -32,7 +32,6 @@ const HomePagePagination = (props: Props) => {
     async (args: { nextOrPrevPageUrl: string; offsetIncrement: boolean }) => {
       setIsLoading(true)
       const pageList = await fetchPoke(args.nextOrPrevPageUrl)
-      console.log(pageList)
 
       const nextPageData = await fetchPokeDetails(pageList.results)
       setFetchedPokemonInfo((prev) => {
