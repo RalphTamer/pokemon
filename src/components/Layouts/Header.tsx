@@ -1,11 +1,12 @@
 "use client"
 
-import _ from "lodash"
-import SearchBar from "../SearchBar"
-import ImageWrapper from "../UI/ImageWrapper"
 import Link from "next/link"
-import { styles } from "@/lib/styles"
+import _ from "lodash"
+
+import ImageWrapper from "../UI/ImageWrapper"
 import { useGlobalStore } from "@/lib/store"
+import { styles } from "@/lib/styles"
+import SearchBar from "../SearchBar"
 
 const Header = () => {
   return (

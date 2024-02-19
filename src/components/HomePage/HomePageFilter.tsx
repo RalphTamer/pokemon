@@ -1,13 +1,12 @@
+import { useQuery } from "@tanstack/react-query"
+
 import { ApiError } from "@/lib/exceptions"
 import {
   FetchedPokeDetails,
   fetchPokemonTypes,
   filterPokemons
 } from "@/services/indexPage.service"
-import { useQuery } from "@tanstack/react-query"
-import { ChangeEvent, Dispatch, SetStateAction, useState } from "react"
 import Button from "../UI/Button"
-import { styles } from "@/lib/styles"
 
 type Props = {
   fetchedPokemons: FetchedPokeDetails[]

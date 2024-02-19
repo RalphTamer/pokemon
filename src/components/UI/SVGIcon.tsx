@@ -1,5 +1,6 @@
-import React, { Fragment } from "react"
 import type { CSSProperties } from "react"
+import React, { Fragment } from "react"
+
 type Props = {
   color?: string
   size?: number

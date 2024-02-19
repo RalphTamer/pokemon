@@ -1,10 +1,12 @@
-import type { Metadata } from "next"
-import { Inter } from "next/font/google"
-import "./globals.css"
 import "react-loading-skeleton/dist/skeleton.css"
-import Provider from "@/lib/Provider"
+import { Inter } from "next/font/google"
+import type { Metadata } from "next"
+
 import Header from "@/components/Layouts/Header"
 import ErrorPopup from "@/components/ErrorPopup"
+import Provider from "@/lib/Provider"
+import "./globals.css"
+
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {

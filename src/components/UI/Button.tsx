@@ -1,5 +1,6 @@
-import { styles } from "@/lib/styles"
 import React, { ReactNode } from "react"
+
+import { styles } from "@/lib/styles"
 
 type Props = {
   children: ReactNode

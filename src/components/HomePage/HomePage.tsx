@@ -1,19 +1,18 @@
 "use client"
 
+import { useQuery } from "@tanstack/react-query"
+import { useRef, useState } from "react"
+
+import RenderPokeCardsGrid from "../RenderPokeCardsGrid"
+import HomePagePagination from "./HomePagePagination"
 import {
   FetchedPokeDetails,
   FetchedPokemonList,
-  fetchPokeDetails,
-  fetchPokemonTypes,
-  filterPokemons
+  fetchPokeDetails
 } from "@/services/indexPage.service"
-import { useQueries, useQuery } from "@tanstack/react-query"
-import RenderPokeCardsGrid from "../RenderPokeCardsGrid"
+import HomePageFilter from "./HomePageFilter"
 import { useGlobalStore } from "@/lib/store"
 import { ApiError } from "@/lib/exceptions"
-import { useRef, useState } from "react"
-import HomePagePagination from "./HomePagePagination"
-import HomePageFilter from "./HomePageFilter"
 
 type Props = {
   pokeList: FetchedPokemonList

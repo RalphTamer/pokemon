@@ -1,9 +1,9 @@
-import { ApiError } from "@/lib/exceptions"
 import { pokeTypesInfo } from "@/services/pokemonDetailsPage.service"
+import { capitalizeFirstLetter, humanize } from "@/lib/utils"
+import CollapsibleItem from "../UI/CollapsibleItem"
 import { useQuery } from "@tanstack/react-query"
 import Skeleton from "react-loading-skeleton"
-import CollapsibleItem from "../UI/CollapsibleItem"
-import { capitalizeFirstLetter, humanize } from "@/lib/utils"
+import { ApiError } from "@/lib/exceptions"
 import { styles } from "@/lib/styles"
 
 type Props = {

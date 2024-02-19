@@ -3,9 +3,9 @@ import { useQuery } from "@tanstack/react-query"
 import Skeleton from "react-loading-skeleton"
 
 import { pokeAbilitiesInfo } from "@/services/pokemonDetailsPage.service"
-import { ApiError } from "@/lib/exceptions"
 import CollapsibleItem from "../UI/CollapsibleItem"
 import { capitalizeFirstLetter } from "@/lib/utils"
+import { ApiError } from "@/lib/exceptions"
 import { styles } from "@/lib/styles"
 
 type Props = {

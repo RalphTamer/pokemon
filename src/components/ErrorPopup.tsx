@@ -1,6 +1,7 @@
 "use client"
-import { useGlobalStore } from "@/lib/store"
 import { useEffect, useState } from "react"
+
+import { useGlobalStore } from "@/lib/store"
 import SVGIcon from "./UI/SVGIcon"
 
 const ErrorPopup = () => {

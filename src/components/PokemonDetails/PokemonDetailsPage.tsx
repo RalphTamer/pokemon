@@ -3,12 +3,12 @@ import { fetchPokemonDetails } from "@/services/pokemonDetailsPage.service"
 import { useQuery } from "@tanstack/react-query"
 import ImageWrapper from "../UI/ImageWrapper"
 
-import { capitalizeFirstLetter } from "@/lib/utils"
-import Badge from "../UI/Badge"
-import { notFound } from "next/navigation"
-import { ApiError } from "@/lib/exceptions"
 import PokemonTypeAndAbilities from "./PokemonTypeAndAbilities"
+import { capitalizeFirstLetter } from "@/lib/utils"
+import { ApiError } from "@/lib/exceptions"
+import { notFound } from "next/navigation"
 import { styles } from "@/lib/styles"
+import Badge from "../UI/Badge"
 
 type Props = {
   id: string

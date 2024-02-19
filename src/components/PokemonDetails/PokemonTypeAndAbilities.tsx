@@ -1,5 +1,6 @@
-import { FetchedPokeDetails } from "@/services/indexPage.service"
 import { useMemo } from "react"
+
+import { FetchedPokeDetails } from "@/services/indexPage.service"
 import PokemonAbilities from "./PokemonAbilities"
 import PokemonTypes from "./PokemonTypes"
 

@@ -1,7 +1,8 @@
+import { ReactNode } from "react"
 import Link from "next/link"
+
 import ImageWrapper from "./ImageWrapper"
 import Button from "./Button"
-import { ReactNode } from "react"
 
 type Props = {
   title: string

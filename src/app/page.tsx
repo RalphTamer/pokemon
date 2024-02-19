@@ -1,8 +1,7 @@
 import {
   fetchPoke,
   fetchPokeDetails,
-  fetchPokemonTypes,
-  listSchema
+  fetchPokemonTypes
 } from "@/services/indexPage.service"
 import HomePage from "@/components/HomePage/HomePage"
 import {

@@ -1,4 +1,7 @@
 "use client"
+import { MutableRefObject, useCallback, useRef, useState } from "react"
+
+import ActivityIndicator from "../UI/ActivityIndicator"
 import {
   FetchedPokemonList,
   FetchedPokeDetails,
@@ -6,9 +9,7 @@ import {
   fetchPokeDetails,
   pokemonLimitPerPage
 } from "@/services/indexPage.service"
-import { MutableRefObject, useCallback, useRef, useState } from "react"
 import SVGIcon from "../UI/SVGIcon"
-import ActivityIndicator from "../UI/ActivityIndicator"
 import { styles } from "@/lib/styles"
 
 type Props = {

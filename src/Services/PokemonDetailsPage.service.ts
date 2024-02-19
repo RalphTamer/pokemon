@@ -1,4 +1,4 @@
-import { effect, z } from "zod"
+import { z } from "zod"
 import { pokeDetailsSchema } from "./indexPage.service"
 import { ApiError } from "@/lib/exceptions"
 
